@@ -1,0 +1,1559 @@
+html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>KIM ZAYN</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Cinzel:wght@700;900&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --deep-blue: #001f66;
+    --royal-blue: #0055ff;
+    --electric-blue: #00d4ff;
+    --cyan-glow: #00f0ff;
+    --dark-navy: #020a1c;
+    --gold: #ffd700;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background: #00030a;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#game-frame {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 1;
+}
+
+/* FLOATING LOGO AFTER HIDE */
+#fab-icon {
+    position: fixed;
+    top: 25px;
+    left: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1.5px solid var(--electric-blue);
+    box-shadow: 0 0 12px var(--royal-blue), inset 0 0 6px var(--cyan-glow);
+    background: url("https://i.ibb.co/TBwwDm0b/IMG-4635.jpg") center/cover no-repeat;
+    cursor: pointer;
+    z-index: 100000;
+    display: none;
+    animation: fabPulse 2s infinite alternate;
+    touch-action: none;
+}
+
+@keyframes fabPulse {
+    to {
+        transform: scale(1.08);
+        box-shadow: 0 0 20px var(--electric-blue);
+    }
+}
+
+#rgb-parent {
+    position: fixed;
+    top: 75px;
+    right: 15px;
+    width: 220px;
+    z-index: 99999;
+    touch-action: none;
+    perspective: 1000px;
+    transform: scale(.95);
+    transform-origin: top right;
+    padding-top: 42px;
+}
+
+@keyframes rgbBorderFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.unified-rgb-shared {
+    background: linear-gradient(135deg,#00ffff,#0055ff,#ff0055,#ffd700,#00ffaa,#00ffff);
+    background-size: 400% 400%;
+    animation: rgbBorderFlow 3.5s linear infinite;
+    box-shadow: 0 0 10px #00d4ff99, 0 0 20px #0055ff66, inset 0 0 6px #ffffff4d;
+}
+
+.external-top-crown {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 45;
+    background: rgba(2,10,28,.95);
+    border: 1.5px solid var(--electric-blue);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    padding: 3px 10px;
+    box-shadow: 0 -4px 12px #00d4ffb3;
+}
+
+.top-head-badge {
+    width: 44px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 3px;
+    display: block;
+    filter: drop-shadow(0 0 5px #fff200);
+}
+
+.realistic-wing-fitted {
+    position: absolute;
+    top: 75px;
+    width: 95px;
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+    filter: drop-shadow(0 0 8px #00d4ff) drop-shadow(0 0 14px #0055ff);
+    object-fit: contain;
+}
+
+.wing-left {
+    left: -70px;
+    transform-origin: 95% 50%;
+    animation: flapLeft3D 2.5s ease-in-out infinite alternate;
+}
+
+.wing-right {
+    right: -70px;
+    transform-origin: 5% 50%;
+    animation: flapRight3D 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes flapLeft3D {
+    0% { transform: translateY(-50%) translateZ(-40px) rotateY(25deg) rotateZ(-3deg) scale(.95); }
+    50% { transform: translateY(-50%) translateZ(-15px) rotateY(-15deg) rotateZ(3deg) scale(1.02); }
+    100% { transform: translateY(-50%) translateZ(-35px) rotateY(15deg) rotateZ(-1deg) scale(1); }
+}
+
+@keyframes flapRight3D {
+    0% { transform: translateY(-50%) translateZ(-40px) rotateY(-25deg) rotateZ(3deg) scale(.95); }
+    50% { transform: translateY(-50%) translateZ(-15px) rotateY(15deg) rotateZ(-3deg) scale(1.02); }
+    100% { transform: translateY(-50%) translateZ(-35px) rotateY(-15deg) rotateZ(1deg) scale(1); }
+}
+
+.bolt-3d-svg {
+    position: absolute;
+    pointer-events: none;
+    z-index: 25;
+    filter: drop-shadow(0 0 6px #ffd700);
+}
+
+.bolt-left-side {
+    top: 55px;
+    left: -12px;
+    width: 22px;
+    height: 35px;
+    animation: boltFloatLeft 2s ease-in-out infinite alternate;
+}
+
+.bolt-right-side {
+    top: 55px;
+    right: -12px;
+    width: 22px;
+    height: 35px;
+    animation: boltFloatRight 2.2s ease-in-out infinite alternate;
+}
+
+.bolt-center-flash {
+    top: 50%;
+    left: 50%;
+    width: 52px;
+    height: 70px;
+    transform: translate(-50%,-50%) scale(0);
+    opacity: 0;
+    z-index: 26;
+}
+
+@keyframes boltFloatLeft {
+    to { transform: rotate(-10deg) translateY(-5px) scale(1.05); }
+}
+
+@keyframes boltFloatRight {
+    to { transform: rotate(10deg) translateY(5px) scale(1.05); }
+}
+
+.strike-active {
+    animation: boltStrikeAnimation .6s ease forwards;
+}
+
+@keyframes boltStrikeAnimation {
+    0% { transform: translate(-50%,-50%) scale(.2) rotate(-20deg); opacity: 0; }
+    50% {
+        transform: translate(-50%,-50%) scale(1.3) rotate(5deg);
+        opacity: 1;
+        filter: drop-shadow(0 0 20px white) drop-shadow(0 0 35px gold);
+    }
+    80% { transform: translate(-50%,-50%) scale(1); opacity: .9; }
+    100% {
+        transform: translate(-50%,-50%) scale(0) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+.cyber-chassis-outer {
+    width: 100%;
+    padding: 2px;
+    position: relative;
+    z-index: 10;
+    border-radius: 6px;
+}
+
+.cyber-chassis-inner {
+    width: 100%;
+    background: var(--dark-navy);
+    border: 1px solid var(--electric-blue);
+    border-radius: 5px;
+    padding: 6px;
+    position: relative;
+    box-shadow: inset 0 0 10px #00d4ff4d, inset 0 0 5px #ff005540;
+}
+
+.hud-corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    z-index: 30;
+}
+
+.hud-corner::before,
+.hud-corner::after {
+    content: '';
+    position: absolute;
+    background: white;
+    box-shadow: 0 0 6px #00ffff, 0 0 12px #0055ff;
+}
+
+.hud-corner-tl { top: -4px; left: -4px; }
+.hud-corner-tl::before { top: 0; left: 0; width: 12px; height: 2.5px; }
+.hud-corner-tl::after { top: 0; left: 0; width: 2.5px; height: 12px; }
+
+.hud-corner-tr { top: -4px; right: -4px; }
+.hud-corner-tr::before {
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 2.5px;
+    background: gold;
+    box-shadow: 0 0 6px gold;
+}
+.hud-corner-tr::after {
+    top: 0;
+    right: 0;
+    width: 2.5px;
+    height: 12px;
+    background: gold;
+    box-shadow: 0 0 6px gold;
+}
+
+.hud-corner-bl { bottom: -4px; left: -4px; }
+.hud-corner-bl::before { bottom: 0; left: 0; width: 12px; height: 2.5px; }
+.hud-corner-bl::after { bottom: 0; left: 0; width: 2.5px; height: 12px; }
+
+.hud-corner-br { bottom: -4px; right: -4px; }
+.hud-corner-br::before {
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 2.5px;
+    background: #ff0055;
+    box-shadow: 0 0 6px #ff0055;
+}
+.hud-corner-br::after {
+    bottom: 0;
+    right: 0;
+    width: 2.5px;
+    height: 12px;
+    background: #ff0055;
+    box-shadow: 0 0 6px #ff0055;
+}
+
+.app-screen { display: none !important; }
+.app-screen.active { display: block !important; }
+
+.brand-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+    margin-bottom: 4px;
+    min-height: 18px;
+}
+
+.brand-inline-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.logo-rgb-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#00ffff,#0055ff,#ff0055,#ffd700,#00ffaa,#00ffff);
+    background-size: 400% 400%;
+    animation: rgbBorderFlow 3.5s linear infinite;
+    box-shadow: 0 0 5px #00d4ffb3;
+}
+
+.brand-mini-circle-logo {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.brand-text-handle {
+    font-size: 8px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: .3px;
+    text-shadow: 0 0 4px #00d4ff99;
+    text-align: center;
+}
+
+.header-line-sep {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,transparent,var(--electric-blue),transparent);
+    margin-bottom: 5px;
+    opacity: .7;
+}
+
+.cyber-top-status-bar {
+    width: 100%;
+    background: #020a1cdc;
+    border: 1px solid var(--electric-blue);
+    border-radius: 4px;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    box-shadow: 0 0 5px #00d4ff80, inset 0 0 3px #00d4ff40;
+}
+
+.status-pill-item {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 7.5px;
+    font-weight: 900;
+    color: white;
+}
+
+.life-heart-badge {
+    font-size: 7.5px;
+    animation: lifePulseAnim .9s infinite alternate;
+}
+
+@keyframes lifePulseAnim {
+    to {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+.blue-dot {
+    width: 3.5px;
+    height: 3.5px;
+    background: var(--cyan-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 4px var(--cyan-glow);
+    animation: dotBlink 1.2s infinite alternate;
+}
+
+@keyframes dotBlink {
+    to { opacity: 1; }
+}
+
+.mod-val,
+.ping-val {
+    color: var(--cyan-glow);
+    text-shadow: 0 0 4px #00f0ffcc;
+}
+
+.lock-content-wrapper {
+    text-align: center;
+    padding: 2px 0;
+}
+
+.lock-icon-box {
+    width: 28px;
+    height: 28px;
+    margin: 0 auto 4px;
+    border: 1px solid #ff0055;
+    border-radius: 4.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff00551a;
+    box-shadow: 0 0 6px #ff005566;
+    animation: lockPulse 1.4s infinite alternate;
+}
+
+@keyframes lockPulse {
+    to { transform: scale(1.05); }
+}
+
+.lock-svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: #ff0055;
+    stroke-width: 2;
+}
+
+.access-locked-title {
+    font-size: 9.5px;
+    font-weight: 900;
+    color: #ff3366;
+    letter-spacing: .5px;
+    margin-bottom: 2px;
+}
+
+.access-subtext {
+    font-size: 6.5px;
+    color: #8c9eb5;
+    margin-bottom: 6px;
+    font-family: Inter, sans-serif;
+}
+
+.cyber-key-input {
+    width: 100%;
+    padding: 5px;
+    background: #000a1e !important;
+    border: 1px solid var(--electric-blue);
+    border-radius: 3.5px;
+    color: var(--cyan-glow) !important;
+    font-family: Orbitron, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 6px;
+    outline: none;
+}
+
+.cyber-key-input:focus {
+    border-color: var(--cyan-glow);
+    box-shadow: 0 0 5px var(--cyan-glow);
+}
+
+.button-group-row {
+    display: flex;
+    gap: 4px;
+}
+
+.btn-active-cyber,
+.btn-hide-cyber {
+    flex: 1;
+    border-radius: 3.5px;
+    color: white;
+    font-weight: 900;
+    font-size: 8px;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.btn-active-cyber {
+    background: linear-gradient(180deg,#0055ff,#0022aa);
+    border: 1px solid var(--cyan-glow);
+    box-shadow: 0 0 5px #0066ff99;
+}
+
+.btn-hide-cyber {
+    background: linear-gradient(180deg,#0d1a30,#050c18);
+    border: 1px solid #1a3360;
+}
+
+#engineScreen {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4.5px;
+    padding: 1px;
+    min-height: 130px;
+}
+
+#bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 1;
+    filter: brightness(1.2) contrast(1.12) saturate(1.15);
+    pointer-events: none;
+}
+
+#engineScreen > *:not(#bg-video) {
+    position: relative;
+    z-index: 2;
+}
+
+.prediction-card-box {
+    background: rgba(1, 15, 38, 0.25);
+    border: 1px solid var(--royal-blue);
+    border-radius: 4.5px;
+    padding: 5px;
+    margin-bottom: 5px;
+    box-shadow: inset 0 0 6px #0066ff40;
+}
+
+.signal-flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 3px;
+}
+
+.hex-core-container {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.hex-svg-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: rotateRing 6s linear infinite;
+}
+
+@keyframes rotateRing {
+    to { transform: rotate(360deg); }
+}
+
+.ai-core-pulse {
+    width: 25px;
+    height: 25px;
+    border-radius: 3.5px;
+    border: 1px solid var(--cyan-glow);
+    box-shadow: 0 0 5px var(--cyan-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    overflow: hidden;
+    animation: corePulse 1.2s infinite alternate;
+    background: #020a1c;
+}
+
+@keyframes corePulse {
+    to { transform: scale(1.08); }
+}
+
+.number-shot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity .2s ease-in-out;
+}
+
+.signal-pill-display {
+    flex: 1;
+    height: 33px;
+    background: #000a1ed9;
+    border: 1px solid var(--electric-blue);
+    border-radius: 3.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 6px #00d4ff59;
+}
+
+.signal-main-text {
+    font-size: 14px;
+    font-weight: 900;
+    color: #00ffff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px #0088ff, 0 0 10px #00f0ff;
+    animation: signalZoomPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes signalZoomPulse {
+    to {
+        transform: scale(1.12);
+        filter: drop-shadow(0 0 7px #00ffff);
+    }
+}
+
+.stars-row-flex {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    color: var(--gold);
+    font-size: 9px;
+    margin-top: 2px;
+    filter: drop-shadow(0 0 3px #ffd700);
+}
+
+.status-row {
+    display: flex;
+    gap: 4px;
+    margin-top: 3px;
+}
+
+.period-pill-container,
+.timer-pill-container {
+    flex: 1;
+    background: #000e26d9;
+    border: 1px solid var(--royal-blue);
+    border-radius: 4.5px;
+    padding: 3px 2px;
+    text-align: center;
+    font-size: 7px;
+    font-weight: 900;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5px;
+}
+
+.timer-pill-container {
+    font-size: 6.5px;
+}
+
+.period-pill-container span,
+.timer-pill-container span {
+    font-size: 8px;
+    font-weight: 900;
+    display: block;
+}
+
+.period-pill-container span {
+    color: var(--electric-blue);
+}
+
+.timer-pill-container span {
+    color: #00ffaa;
+}
+
+.leader-banner-box {
+    margin-top: 6px;
+    width: 100%;
+    background: linear-gradient(135deg,#0055ff,#00d4ff,#ff0055,#ffd700,#0055ff);
+    background-size: 300% 300%;
+    padding: 1px;
+    border-radius: 4.5px;
+    animation: rgbBorderFlow 3s linear infinite;
+    box-shadow: 0 0 8px #00d4ff80;
+}
+
+.leader-banner-inner {
+    background: #020a1cf2;
+    border-radius: 3.5px;
+    text-align: center;
+    padding: 3px 0;
+}
+
+.leader-name-text {
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: .8px;
+    color: white;
+    text-shadow: 0 0 5px var(--cyan-glow), 0 0 10px var(--royal-blue);
+}
+
+#error-overlay {
+    position: absolute;
+    inset: 0;
+    background: #ff0055f2;
+    display: none;
+    z-index: 100;
+    color: white;
+    font-size: 7.5px;
+    padding: 5px;
+    border-radius: 4.5px;
+    text-align: center;
+    font-weight: 900;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.3;
+}
+
+@media (max-width: 360px) {
+    #rgb-parent {
+        right: 8px;
+        transform: scale(.88);
+        transform-origin: top right;
+    }
+}
+</style>
+</head>
+
+<body oncontextmenu="return false;">
+
+<svg style="display:none" aria-hidden="true">
+    <defs>
+        <linearGradient id="goldFront" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFF8A6"/>
+            <stop offset="40%" stop-color="#FFD700"/>
+            <stop offset="100%" stop-color="#FF9900"/>
+        </linearGradient>
+
+        <linearGradient id="goldSide" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#E68A00"/>
+            <stop offset="100%" stop-color="#994D00"/>
+        </linearGradient>
+    </defs>
+</svg>
+
+<iframe
+    id="game-frame"
+    src="https://www.bqrxst51.com/#/register?invitationCode=12744119662"
+    allow="fullscreen"
+    title="Game">
+</iframe>
+
+<div id="fab-icon" onclick="showWidget()" title="Open VIP Panel"></div>
+
+<div id="rgb-parent">
+
+    <div class="external-top-crown">
+        <img
+            class="top-head-badge"
+            src="https://i.ibb.co/MxgzkQHL/IMG-4057.jpg"
+            alt="Head Crest">
+    </div>
+
+    <img
+        class="realistic-wing-fitted wing-left"
+        src="https://i.ibb.co/KcYnxQHs/1788901221567.png"
+        alt="Left Wing">
+
+    <img
+        class="realistic-wing-fitted wing-right"
+        src="https://i.ibb.co/m5g7qqwT/1788901176247.png"
+        alt="Right Wing">
+
+    <svg class="bolt-3d-svg bolt-left-side" viewBox="0 0 100 140">
+        <polygon points="45,5 15,75 42,75 10,135 85,55 52,55" fill="url(#goldSide)"/>
+        <polygon points="50,0 20,70 47,70 15,130 90,50 57,50" fill="url(#goldFront)"/>
+    </svg>
+
+    <svg class="bolt-3d-svg bolt-right-side" viewBox="0 0 100 140">
+        <polygon points="45,5 15,75 42,75 10,135 85,55 52,55" fill="url(#goldSide)"/>
+        <polygon points="50,0 20,70 47,70 15,130 90,50 57,50" fill="url(#goldFront)"/>
+    </svg>
+
+    <svg id="centerStrikeBolt" class="bolt-3d-svg bolt-center-flash" viewBox="0 0 100 140">
+        <polygon points="45,5 15,75 42,75 10,135 85,55 52,55" fill="url(#goldSide)"/>
+        <polygon points="50,0 20,70 47,70 15,130 90,50 57,50" fill="url(#goldFront)"/>
+    </svg>
+
+    <div class="cyber-chassis-outer unified-rgb-shared">
+
+        <div class="hud-corner hud-corner-tl"></div>
+        <div class="hud-corner hud-corner-tr"></div>
+        <div class="hud-corner hud-corner-bl"></div>
+        <div class="hud-corner hud-corner-br"></div>
+
+        <div class="cyber-chassis-inner">
+
+            <div id="error-overlay"></div>
+
+            <div class="brand-header">
+                <div class="brand-inline-group">
+
+                    <div class="logo-rgb-wrap">
+                        <img
+                            class="brand-mini-circle-logo"
+                            src="https://i.ibb.co/TBwwDm0b/IMG-4635.jpg"
+                            alt="KIM ZAYN Logo">
+                    </div>
+
+                    <span class="brand-text-handle">KIM ZAYN VIP</span>
+
+                </div>
+            </div>
+
+            <div class="header-line-sep"></div>
+
+            <div class="cyber-top-status-bar">
+
+                <div class="status-pill-item">
+                    <span class="blue-dot"></span>
+                    <span class="life-heart-badge">❤️</span> LIVE
+                </div>
+
+                <div class="status-pill-item">
+                    MOD : <span class="mod-val">ON</span>
+                </div>
+
+                <div class="status-pill-item">
+                    PING : <span id="pingValue" class="ping-val">37MS</span>
+                </div>
+
+            </div>
+
+            <div id="loginScreen" class="app-screen active">
+
+                <div class="lock-content-wrapper">
+
+                    <div class="lock-icon-box">
+                        <svg class="lock-svg" viewBox="0 0 24 24">
+                            <rect x="5" y="11" width="14" height="10" rx="2"/>
+                            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+                        </svg>
+                    </div>
+
+                    <div class="access-locked-title">ACCESS LOCKED</div>
+
+                    <div class="access-subtext">
+                        MESSAGE :- @Kim_Zayn101
+                    </div>
+
+                    <input
+                        type="password"
+                        id="keyInput"
+                        class="cyber-key-input"
+                        placeholder="VIP PASSWORD"
+                        autocomplete="off">
+
+                    <div class="button-group-row">
+                        <button class="btn-active-cyber" onclick="verifyKey()">HACK LOGIN</button>
+                        <button class="btn-hide-cyber" onclick="hideWidget()">HIDE</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="engineScreen" class="app-screen">
+
+                <video
+                    id="bg-video"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    preload="auto">
+
+                    <source
+                        src="https://files.catbox.moe/kqq7jg.mov"
+                        type="video/mp4">
+
+                </video>
+
+                <div class="prediction-card-box">
+
+                    <div class="signal-flex-row">
+
+                        <div class="hex-core-container">
+
+                            <svg class="hex-svg-ring" viewBox="0 0 100 100">
+
+                                <polygon
+                                    points="50,5 90,25 90,75 50,95 10,75 10,25"
+                                    fill="none"
+                                    stroke="#00d4ff"
+                                    stroke-width="4"
+                                    stroke-dasharray="12,6"/>
+
+                                <polygon
+                                    points="50,12 83,29 83,71 50,88 17,71 17,29"
+                                    fill="none"
+                                    stroke="#00ffff"
+                                    stroke-width="2"/>
+
+                            </svg>
+
+                            <div class="ai-core-pulse">
+                                <img
+                                    id="numberShotImg"
+                                    class="number-shot-img"
+                                    src=""
+                                    alt="Prediction image">
+                            </div>
+
+                        </div>
+
+                        <div class="signal-pill-display">
+                            <div id="predictionSignal" class="signal-main-text">
+                                ⏳⏳⏳
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="stars-row-flex">
+                        <span>⭐</span>
+                        <span>⭐</span>
+                        <span>⭐</span>
+                        <span>⭐</span>
+                        <span>⭐</span>
+                    </div>
+
+                </div>
+
+                <div class="status-row">
+
+                    <div class="period-pill-container">
+                        PRD:
+                        <span id="periodDisplay">0000</span>
+                    </div>
+
+                    <div class="timer-pill-container">
+                        TDR:
+                        <span id="timerDisplay">30s</span>
+                    </div>
+
+                </div>
+
+                <div class="leader-banner-box">
+
+                    <div class="leader-banner-inner">
+                        <div class="leader-name-text">
+                            _KIM ZAYN
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    const CONFIG = {
+        telegramRedirect: "https://t.me/Kim_Zayn101",
+        staticKeys: ["KIMBOSS"]
+    };
+
+    const SMALL_IMAGES = [
+        "https://i.ibb.co/zTnYR7WL/IMG-20260907-192359-299.jpg",
+        "https://i.ibb.co/tM0dM6X2/IMG-20260907-192401-381.jpg",
+        "https://i.ibb.co/wrFcjF3Z/IMG-20260907-192402-739.jpg",
+        "https://i.ibb.co/YTtdFNSt/IMG-20260907-192403-903.jpg",
+        "https://i.ibb.co/LzswnGYB/IMG-20260907-192405-307.jpg"
+    ];
+
+    const BIG_IMAGES = [
+        "https://i.ibb.co/DJyFDZH/IMG-20260907-192406-786.jpg",
+        "https://i.ibb.co/v4Kpx2Mg/IMG-20260907-192408-507.jpg",
+        "https://i.ibb.co/xtJ7KNhm/IMG-20260907-192409-174.jpg",
+        "https://i.ibb.co/5g9w1Zpt/IMG-20260907-192410-607.jpg",
+        "https://i.ibb.co/S7VWbDDG/IMG-20260907-192412-215.jpg"
+    ];
+
+    [...SMALL_IMAGES, ...BIG_IMAGES].forEach(function (url) {
+        const img = new Image();
+        img.src = url;
+    });
+
+    const LOGIC_ENGINES = [
+        {
+            name: "Zig-Zag",
+            detect: b => b[0] !== b[1] && b[1] !== b[2],
+            predict: b => ({
+                bs: b[0] === "BIG" ? "SMALL" : "BIG"
+            })
+        },
+        {
+            name: "Mirror",
+            detect: b => b[0] === b[3] && b[1] === b[2],
+            predict: b => ({
+                bs: b[0]
+            })
+        },
+        {
+            name: "Dragon",
+            detect: b => b[0] === b[1] && b[1] === b[2],
+            predict: b => ({
+                bs: b[0]
+            })
+        },
+        {
+            name: "Sandwich",
+            detect: b => b[0] === b[2] && b[0] !== b[1],
+            predict: b => ({
+                bs: b[1]
+            })
+        }
+    ];
+
+    let dataFetchInterval = null;
+    let tickInterval = null;
+    let lastProcessedPeriod = null;
+
+    const apiBaseUrl =
+        "https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json?pageNo=1&pageSize=50";
+
+    const parentWidget = document.getElementById("rgb-parent");
+    const fabIcon = document.getElementById("fab-icon");
+    const loginScreen = document.getElementById("loginScreen");
+    const engineScreen = document.getElementById("engineScreen");
+    const keyInput = document.getElementById("keyInput");
+    const periodDisplay = document.getElementById("periodDisplay");
+    const timerDisplay = document.getElementById("timerDisplay");
+    const predictionSignal = document.getElementById("predictionSignal");
+    const numberShotImg = document.getElementById("numberShotImg");
+    const errorOverlay = document.getElementById("error-overlay");
+    const centerStrikeBolt = document.getElementById("centerStrikeBolt");
+    const pingValue = document.getElementById("pingValue");
+
+    function updateDynamicPing() {
+        pingValue.textContent =
+            (Math.floor(Math.random() * 14) + 28) + "MS";
+    }
+
+    setInterval(updateDynamicPing, 2500);
+
+    function triggerDynamic3DBolt() {
+        if (!centerStrikeBolt) return;
+
+        centerStrikeBolt.classList.remove("strike-active");
+
+        void centerStrikeBolt.offsetWidth;
+
+        centerStrikeBolt.classList.add("strike-active");
+
+        setTimeout(
+            triggerDynamic3DBolt,
+            Math.random() * 2500 + 1200
+        );
+    }
+
+    setTimeout(triggerDynamic3DBolt, 1000);
+
+    function runSecondTicker() {
+        const remaining =
+            30 - (Math.floor(Date.now() / 1000) % 30);
+
+        timerDisplay.textContent = remaining + "s";
+    }
+
+    function makeDraggable(element) {
+        let isDragging = false;
+
+        let startX = 0;
+        let startY = 0;
+
+        let initialLeft = 0;
+        let initialTop = 0;
+
+        function startDrag(e) {
+
+            if (e.target.closest("input, button")) return;
+
+            isDragging = true;
+
+            const point =
+                e.touches ? e.touches[0] : e;
+
+            const rect =
+                element.getBoundingClientRect();
+
+            startX = point.clientX;
+            startY = point.clientY;
+
+            initialLeft = rect.left;
+            initialTop = rect.top;
+
+            document.addEventListener(
+                "mousemove",
+                onMove
+            );
+
+            document.addEventListener(
+                "mouseup",
+                onStop
+            );
+
+            document.addEventListener(
+                "touchmove",
+                onMove,
+                { passive: false }
+            );
+
+            document.addEventListener(
+                "touchend",
+                onStop
+            );
+        }
+
+        function onMove(e) {
+
+            if (!isDragging) return;
+
+            if (e.cancelable) {
+                e.preventDefault();
+            }
+
+            const point =
+                e.touches ? e.touches[0] : e;
+
+            const dx =
+                point.clientX - startX;
+
+            const dy =
+                point.clientY - startY;
+
+            element.style.left =
+                (initialLeft + dx) + "px";
+
+            element.style.top =
+                (initialTop + dy) + "px";
+
+            element.style.right = "auto";
+        }
+
+        function onStop() {
+
+            isDragging = false;
+
+            document.removeEventListener(
+                "mousemove",
+                onMove
+            );
+
+            document.removeEventListener(
+                "mouseup",
+                onStop
+            );
+
+            document.removeEventListener(
+                "touchmove",
+                onMove
+            );
+
+            document.removeEventListener(
+                "touchend",
+                onStop
+            );
+        }
+
+        element.addEventListener(
+            "mousedown",
+            startDrag
+        );
+
+        element.addEventListener(
+            "touchstart",
+            startDrag,
+            { passive: false }
+        );
+    }
+
+    makeDraggable(parentWidget);
+    makeDraggable(fabIcon);
+
+    window.hideWidget = function () {
+
+        parentWidget.style.display = "none";
+
+        fabIcon.style.display = "block";
+    };
+
+    window.showWidget = function () {
+
+        parentWidget.style.display = "block";
+
+        fabIcon.style.display = "none";
+    };
+
+    function playHackingAlertSound() {
+
+        try {
+
+            const AudioContextClass =
+                window.AudioContext ||
+                window.webkitAudioContext;
+
+            if (!AudioContextClass) return;
+
+            const ctx =
+                new AudioContextClass();
+
+            const startTime =
+                ctx.currentTime;
+
+            for (let i = 0; i < 3; i++) {
+
+                const osc =
+                    ctx.createOscillator();
+
+                const gain =
+                    ctx.createGain();
+
+                const t =
+                    startTime + i * 0.3;
+
+                osc.type = "sawtooth";
+
+                osc.frequency.setValueAtTime(
+                    750,
+                    t
+                );
+
+                osc.frequency.linearRampToValueAtTime(
+                    1500,
+                    t + 0.15
+                );
+
+                osc.frequency.linearRampToValueAtTime(
+                    750,
+                    t + 0.3
+                );
+
+                gain.gain.setValueAtTime(
+                    0.15,
+                    t
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.01,
+                    t + 0.3
+                );
+
+                osc.connect(gain);
+
+                gain.connect(ctx.destination);
+
+                osc.start(t);
+
+                osc.stop(t + 0.3);
+            }
+
+        } catch (e) {
+            // Audio is optional.
+        }
+    }
+
+    window.verifyKey = function () {
+
+        const value =
+            keyInput.value.trim();
+
+        if (CONFIG.staticKeys.includes(value)) {
+
+            errorOverlay.style.display =
+                "none";
+
+            loginScreen.classList.remove(
+                "active"
+            );
+
+            engineScreen.classList.add(
+                "active"
+            );
+
+            initGameEngine();
+
+            return;
+        }
+
+        playHackingAlertSound();
+
+        errorOverlay.style.display =
+            "flex";
+
+        errorOverlay.innerHTML = `
+            <div style="color:#00ffff;font-size:8.5px;">
+                ⚡ BYPASS WARNING ⚡
+            </div>
+
+            <div style="color:#ffd700;font-size:7px;margin-top:2px;">
+                KEY DM KIM!
+            </div>
+
+            <div style="color:#ffffff;font-size:6.5px;margin-top:3px;">
+                REDIRECTING TO TELEGRAM...
+            </div>
+        `;
+
+        let toggle = 0;
+
+        const flashInterval =
+            setInterval(function () {
+
+                errorOverlay.style.background =
+                    toggle % 2 === 0
+                        ? "rgba(0,212,255,.95)"
+                        : "rgba(255,0,85,.95)";
+
+                errorOverlay.style.color =
+                    toggle % 2 === 0
+                        ? "#00030a"
+                        : "#ffffff";
+
+                toggle++;
+
+            }, 120);
+
+        setTimeout(function () {
+
+            clearInterval(flashInterval);
+
+            window.open(
+                CONFIG.telegramRedirect,
+                "_blank"
+            );
+
+            errorOverlay.style.display =
+                "none";
+
+        }, 1000);
+    };
+
+    function initGameEngine() {
+
+        if (dataFetchInterval) {
+            clearInterval(dataFetchInterval);
+        }
+
+        if (tickInterval) {
+            clearInterval(tickInterval);
+        }
+
+        fetchHistory();
+
+        dataFetchInterval =
+            setInterval(
+                fetchHistory,
+                3000
+            );
+
+        tickInterval =
+            setInterval(
+                runSecondTicker,
+                1000
+            );
+
+        runSecondTicker();
+
+        const video =
+            document.getElementById(
+                "bg-video"
+            );
+
+        if (video) {
+
+            video.play().catch(function () {
+                // Mobile browsers may require user interaction.
+            });
+        }
+    }
+
+    async function fetchHistory() {
+
+        try {
+
+            const response =
+                await fetch(
+                    apiBaseUrl,
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "History request failed: " +
+                    response.status
+                );
+            }
+
+            const data =
+                await response.json();
+
+            if (
+                data &&
+                data.code === 0 &&
+                data.data &&
+                data.data.list
+            ) {
+
+                processEngineData(
+                    data.data.list
+                );
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Unable to fetch game history.",
+                error
+            );
+        }
+    }
+
+    function processEngineData(list) {
+
+        if (
+            !Array.isArray(list) ||
+            list.length === 0
+        ) {
+            return;
+        }
+
+        const latest = list[0];
+
+        const nextIssueNumber =
+            (
+                BigInt(
+                    latest.issueNumber
+                ) + 1n
+            ).toString();
+
+        periodDisplay.textContent =
+            nextIssueNumber;
+
+        if (
+            lastProcessedPeriod ===
+            nextIssueNumber
+        ) {
+            return;
+        }
+
+        lastProcessedPeriod =
+            nextIssueNumber;
+
+        const historyItems =
+            list.slice(0, 10).map(
+                function (item) {
+
+                    const number =
+                        parseInt(
+                            item.number,
+                            10
+                        );
+
+                    return {
+                        num: number,
+                        bs: number >= 5
+                            ? "BIG"
+                            : "SMALL"
+                    };
+                }
+            );
+
+        const bsArray =
+            historyItems.map(
+                item => item.bs
+            );
+
+        let selectedPrediction =
+            null;
+
+        for (
+            const engine
+            of LOGIC_ENGINES
+        ) {
+
+            if (
+                bsArray.length >= 4 &&
+                engine.detect(bsArray)
+            ) {
+
+                selectedPrediction =
+                    engine.predict(
+                        bsArray
+                    );
+
+                break;
+            }
+        }
+
+        if (!selectedPrediction) {
+
+            selectedPrediction = {
+                bs:
+                    bsArray[0] === "BIG"
+                        ? "SMALL"
+                        : "BIG"
+            };
+        }
+
+        const prediction =
+            selectedPrediction.bs;
+
+        predictionSignal.textContent =
+            prediction;
+
+        const imagePool =
+            prediction === "BIG"
+                ? BIG_IMAGES
+                : SMALL_IMAGES;
+
+        const imageUrl =
+            imagePool[
+                Math.floor(
+                    Math.random() *
+                    imagePool.length
+                )
+            ];
+
+        numberShotImg.onerror =
+            function () {
+
+                console.warn(
+                    "Prediction image could not be loaded:",
+                    imageUrl
+                );
+
+                numberShotImg.removeAttribute(
+                    "src"
+                );
+
+                numberShotImg.alt =
+                    "Image unavailable";
+            };
+
+        numberShotImg.onload =
+            function () {
+
+                numberShotImg.alt =
+                    prediction +
+                    " prediction image";
+            };
+
+        numberShotImg.src =
+            imageUrl;
+    }
+
+})();
+</script>
+
+</body>
+</html>
